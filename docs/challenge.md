@@ -1,0 +1,7 @@
+## With this, the model to be productive must be the one that is trained with the top 10 features and class balancing, but which one?
+
+The most suitable model for our problem appears to be XGBoost. We've observed that it performs similarly to Logistic Regression, indicating comparable predictive accuracy. Additionally, XGBoost maintains its performance even when we reduce the number of features to the top 10 most important ones, which is advantageous as it simplifies the model without compromising accuracy.
+Furthermore, class balancing is essential for addressing imbalanced datasets, and XGBoost demonstrates an improvement in recall for class '1' when we balance the classes. This suggests that XGBoost is particularly effective in handling imbalanced data.
+XGBoost's suitability goes beyond these observations. It is known for its ability to capture complex relationships in data, making it a robust choice for various classification problems. Being an ensemble learning method, XGBoost combines multiple models (trees) to make predictions, often leading to improved generalization and robustness.
+Moreover, XGBoost incorporates regularization techniques to prevent overfitting and enhance model generalization. These characteristics make XGBoost a strong contender for our problem.
+However, it's essential to consider other factors like computational resources, interpretability, and specific problem requirements when making the final decision. Nevertheless, based on our observations, XGBoost appears to be a compelling choice.
