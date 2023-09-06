@@ -1,0 +1,47 @@
+name: "Continuous Delivery"
+
+on:
+  workflow_run:
+    workflows: ["CI - Continuous Integration on Windows"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          version: "latest"
+          project_id: latam-challenge-jmcm
+
+      - name: Build and tag Docker image
+        run: |
+          docker build -t api-latam:v1 latam-challenge
+          docker tag api-latam:v1 us-east1-docker.pkg.dev/latam-challenge-jmcm/registro-1/api-latam:v1
+
+      - name: Login to GCP Docker Registry
+        run: |
+          echo ${{ secrets.GCP_SA_KEY }} | docker login -u _json_key --password-stdin https://us-east1-docker.pkg.dev
+
+      - name: Push Docker image to GCP Docker Registry
+        run: |
+          docker push us-east1-docker.pkg.dev/latam-challenge-jmcm/registro-1/api-latam:v1
+
+      - name: Deploy to GCP App Engine
+        run: |
+          # Configure Google Cloud environment
+          gcloud auth activate-service-account --key-file=google-cloud-service-key.json
+          gcloud config set project latam-challenge-jmcm
+
+          # Deploy API to GCP App Engine using the uploaded Docker image
+          gcloud app deploy --image-url=us-east1-docker.pkg.dev/latam-challenge-jmcm/registro-1/api-latam:v1
+
+      - name: Run Stress Test
+        run: |
+          # Run stress test using command: make stress-test from Makefile location
