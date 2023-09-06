@@ -26,11 +26,11 @@ jobs:
       - name: Build and tag Docker image
         run: |
           docker build -t api-latam:v1 ./
-          docker tag api-latam:v1 us-east1-docker.pkg.dev/latam-challenge-jmcm/registro-1/api-latam:v1
+          docker tag api-latam:v1 us-east1-docker.pkg.dev/latam-challenge-jmcm/latam-challenge-jmcm/api-latam:v1
 
       - name: Push Docker image to GCP Docker Registry
         run: |
-          docker push us-east1-docker.pkg.dev/latam-challenge-jmcm/registro-1/api-latam:v1
+          docker push us-east1-docker.pkg.dev/latam-challenge-jmcm/latam-challenge-jmcm/api-latam:v1
 
       - name: Deploy to GCP App Engine
         run: |
@@ -39,7 +39,7 @@ jobs:
           gcloud config set project latam-challenge-jmcm
 
           # Deploy API to GCP App Engine using the uploaded Docker image
-          gcloud app deploy --image-url=us-east1-docker.pkg.dev/latam-challenge-jmcm/registro-1/api-latam:v1
+          gcloud app deploy --image-url=us-east1-docker.pkg.dev/latam-challenge-jmcm/latam-challenge-jmcm/api-latam:v1
 
       - name: Run Stress Test
         run: |
