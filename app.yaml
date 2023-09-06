@@ -1,0 +1,12 @@
+runtime: python
+runtime_config:
+  python_version: 3.7
+
+entrypoint:
+  ["uvicorn", "challenge.api:app", "--host", "0.0.0.0", "--port", "8080"]
+
+env: flex
+
+handlers:
+  - url: /.*
+    script: auto

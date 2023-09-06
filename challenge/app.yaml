@@ -1,0 +1,11 @@
+runtime: python
+runtime_config:
+  python_version: 3.7
+
+entrypoint: uvicorn challenge.api:app --host 0.0.0.0 --port $PORT
+
+env: flex
+
+handlers:
+  - url: /.*
+    script: this field is required, but ignored

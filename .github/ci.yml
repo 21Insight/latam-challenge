@@ -1,0 +1,39 @@
+name: "Continuous Integration"
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.7
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+          pip install -r requirements-test.txt
+
+      - name: Run model tests (model.py)
+        run: |
+          # Run model tests on development branch
+          # Use command: make model-test from Makefile location
+
+      - name: Run API tests (api.py)
+        run: |
+          # Run API tests using command: make api-test from Makefile location
+
+      - name: Merge changes to main
+        run: |
+          # Merge changes from development branch to main
+          # This should be done after successful tests on development branch
