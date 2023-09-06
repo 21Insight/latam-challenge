@@ -30,7 +30,7 @@ jobs:
 
       - name: Push Docker image to GCP Docker Registry
         run: |
-          docker push us-east1-docker.pkg.dev/latam-challenge-jmcm/latam-challenge-jmcm
+          docker push us-east1-docker.pkg.dev/latam-challenge-jmcm/latam-challenge-jmcm/api-latam:v1
 
       - name: Deploy to GCP App Engine
         run: |
