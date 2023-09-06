@@ -26,7 +26,7 @@ jobs:
       - name: Build and tag Docker image
         run: |
           docker build -t api-latam:v1 ./
-          docker tag api-latam:v1
+          docker tag api-latam:v1 api-latam:v1
 
       - name: Push Docker image to GCP Docker Registry
         run: |
