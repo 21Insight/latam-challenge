@@ -39,7 +39,7 @@ jobs:
           gcloud config set project latam-challenge-jmcm
 
           # Deploy API to GCP App Engine using the uploaded Docker image
-          gcloud app deploy --image-url=us-east1-docker.pkg.dev/latam-challenge-jmcm/latam-challenge-jmcm/api-latam:v1
+          gcloud app deploy --image-url=us-east1-docker.pkg.dev/latam-challenge-jmcm/latam-challenge-jmcm/api-latam
 
       - name: Run Stress Test
         run: |
