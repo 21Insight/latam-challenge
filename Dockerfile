@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.2
-FROM python:3.7
+FROM python:3.9
 # put your docker configuration here
 
 # Set the working directory to /app

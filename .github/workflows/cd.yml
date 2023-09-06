@@ -20,7 +20,7 @@ jobs:
 
       - name: Build and tag Docker image
         run: |
-          docker build -t api-latam:v1 latam-challenge
+          docker build -t api-latam:v1 ./
           docker tag api-latam:v1 us-east1-docker.pkg.dev/latam-challenge-jmcm/registro-1/api-latam:v1
 
       - name: Login to GCP Docker Registry
