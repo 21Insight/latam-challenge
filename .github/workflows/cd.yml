@@ -30,7 +30,7 @@ jobs:
 
       - name: Login to GCP Docker Registry
         run: |
-          gcloud auth configure-docker -q
+          gcloud auth configure-docker us-east1-docker.pkg.dev
 
       - name: Push Docker image to GCP Docker Registry
         run: |
