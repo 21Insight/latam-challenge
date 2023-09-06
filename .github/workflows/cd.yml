@@ -39,7 +39,6 @@ jobs:
       - name: Deploy to GCP App Engine
         run: |
           # Configure Google Cloud environment
-          gcloud auth activate-service-account --key-file=google-cloud-service-key.json
           gcloud config set project latam-challenge-jmcm
 
           # Deploy API to GCP App Engine using the uploaded Docker image
